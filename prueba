@@ -17,7 +17,9 @@ getSymbols(tickers, from = start_date, to = end_date)
 prices <- do.call(merge, lapply(tickers, function(ticker) Ad(get(ticker))))
 colnames(prices) <- tickers
 holaaa
- 
+
+
+juaver
  
 ## CALCULAR RETORNOS DIARIOS
  
