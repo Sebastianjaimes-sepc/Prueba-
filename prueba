@@ -1,0 +1,23 @@
+# Definir tickers por sector
+tech_stocks <- c("AAPL", "NVDA", "MSFT", "GOOGL")  # Tecnología
+retail_stocks <- c("JNJ", "TGT", "WMT", "MCD")     # Retail
+ 
+tickers <- c(tech_stocks, retail_stocks)
+ 
+# Definir periodo
+start_date <- "2020-01-01"
+end_date <- "2026-02-25"
+ 
+# Descargar datos
+getSymbols(tickers, from = start_date, to = end_date)
+ 
+ 
+## EXTRAER PRECIOS AJUSTADOS
+ 
+prices <- do.call(merge, lapply(tickers, function(ticker) Ad(get(ticker))))
+colnames(prices) <- tickers
+ 
+ 
+## CALCULAR RETORNOS DIARIOS
+ 
+returns <- na.omit(ROC(prices, type = "discrete"))
